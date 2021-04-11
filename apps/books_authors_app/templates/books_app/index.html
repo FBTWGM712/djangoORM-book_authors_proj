@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=d, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Books and Authors</title>
+    <style>
+      #textf {
+        height: 60px;
+      }
+      #titlef {
+        margin-left: 45px;
+      }
+      .form-in {
+        width: 300px;
+        display: inline-block;
+      }
+      .info {
+        width: 300px;
+        display: inline-block;
+      }
+      .info table {
+        margin-left: 50px;
+        border-spacing: 0px;
+        border: 1px solid gray;
+      }
+      .info table th {
+        border: 1px solid gray;
+      }
+      .info table td {
+        border: 1px solid gray;
+      }
+      #btn-add {
+        margin: 5px 0px 0px 85px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="books">
+        <h1>Add a Book</h1>
+        <div class="form-in">
+          <form action="/add_book" method="POST">
+            {% csrf_token %}
+            <p>Title: <input id="titlef" type="text" name="title" /></p>
+            <p>Description: <input id="textf" type="text" name="desc" /></p>
+            <input id="btn-add" type="submit" value="Add" />
+          </form>
+        </div>
+        <div class="info">
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Action</th>
+
+              {% for book in books %}
+            </tr>
+
+            <tr>
+              <td>{{book.id}}</td>
+              <td>{{book.title}}</td>
+              <td><a href="/book_info/{{book.id}}">View</a></td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
